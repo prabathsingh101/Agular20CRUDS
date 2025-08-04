@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="spinner-container" *ngIf="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <mat-card cardTitle="Post List">
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Enter text search" (keyup)="filterchange($event)" />
+          </mat-form-field>
+        </div>
+
+      </div>
+      <table matSort mat-table [dataSource]="dataSource" matSortDisableClear matSortActive="id" matSortDirection="asc">
+        <!-- Position Column -->
+        <ng-container matColumnDef="postId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> #. </th>
+          <td mat-cell *matCellDef="let element"> {{ element.postId }} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+          <td mat-cell *matCellDef="let element"> {{ element.title }} </td>
+        </ng-container>
+        <!-- Name Column -->
+
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Category </th>
+          <td mat-cell *matCellDef="let element"> {{ element.category }} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="tags">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Tags </th>
+          <td mat-cell *matCellDef="let element"> {{ element.tags }} </td>
+        </ng-container>
+
+        <!-- action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+            <button matButton="filled" class="violet" matTooltip="Edit" (click)="edit(element?.postId)">Edit</button>&nbsp;
+            <button matButton="filled" class="rose" matTooltip="Delete" (click)="delete(element?.postId)">Delete</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator [pageSize]="3" [pageSizeOptions]="[3,5, 10, 20]" showFirstLastButtons
+        aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </mat-card>
+  </div>
+</div>

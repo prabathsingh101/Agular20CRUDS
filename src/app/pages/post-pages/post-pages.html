@@ -1,0 +1,64 @@
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+
+  <div class="container">
+    <h1>Post Pages</h1>
+    <p>Welcome to the Post Pages!</p>
+    <!-- Add your post-related content here -->
+  <div class="spinner-container" *ngIf="loader">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <label for="title">Title</label>
+          <input type="text" id="title" #title matInput formControlName="title" name="title"
+            placeholder="Enter post title">
+          <mat-hint align="end">
+            {{title.value.length}} / 10
+          </mat-hint>
+          <mat-error *ngIf="getTitle.hasError('required')">Title is required</mat-error>
+          <mat-error *ngIf="getTitle.hasError('maxlength')">Title cannot exceed 10 characters</mat-error>
+        </mat-form-field>
+
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <label for="content">Content</label>
+          <input type="text" id="content" #contents matInput formControlName="content" name="content"
+            placeholder="Enter post content">
+          <mat-hint align="end">
+            {{title.value.length}} / 100
+          </mat-hint>
+          <mat-error *ngIf="getContent.hasError('required')">Title is required</mat-error>
+          <mat-error *ngIf="getContent.hasError('maxlength')">Title cannot exceed 100 characters</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <label for="category">Category</label>
+          <input type="text" id="category" #cateries matInput formControlName="category" name="category"
+            placeholder="Enter post category">
+          <mat-hint align="end">
+            {{title.value.length}} / 10
+          </mat-hint>
+          <mat-error *ngIf="getCategory.hasError('required')">Title is required</mat-error>
+        </mat-form-field>
+
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <label for="tag">Tag</label>
+          <input type="text" id="tag" #tags matInput formControlName="tag" name="tag" placeholder="Enter post tag">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <button matButton="filled" class="violet" routerLink="/post/create">Create New Post</button>
+      </div>
+    </div>
+  </div>
+</form>
